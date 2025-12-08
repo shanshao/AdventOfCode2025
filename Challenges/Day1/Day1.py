@@ -6,7 +6,7 @@ class Day1Challenge:
         base = os.path.dirname(os.path.abspath(__file__))
         self.file_path = os.path.join(base, "input.txt")
 
-    def day_1(self):
+    def day_1_part_1(self):
         password = 0
         rotations = self.get_input()
         for rotation in rotations:
@@ -19,6 +19,23 @@ class Day1Challenge:
             self.dial = self.dial % 100     
             if self.dial == 0:
                 password += 1
+        return password
+
+    def day_1_part_2(self):
+        password = 0
+        rotations = self.get_input()
+        for rotation in rotations:
+            direction, distance = rotation
+            if direction == "L":
+                self.dial -= distance
+                if self.dial < 0:
+                    password += abs(self.dial // 100)
+            elif direction == "R":
+                self.dial += distance
+                if self.dial > 99:
+                    password += (self.dial // 100)
+
+            self.dial = self.dial % 100     
         return password
 
     def get_input(self):
@@ -35,4 +52,4 @@ class Day1Challenge:
         return rotations
 
 
-challenge = print(Day1Challenge().day_1())
+challenge = print(Day1Challenge().day_1_part_2())
