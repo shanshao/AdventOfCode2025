@@ -1,4 +1,3 @@
-import sys
 from math import prod
 
 class Day6Challenge:
